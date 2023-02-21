@@ -1,0 +1,7 @@
+body {
+  padding: 10px;
+}
+@font-face {
+  font-family: Euclid;
+  src: url("./assets/Euclid Circular A Regular.ttf");
+}
