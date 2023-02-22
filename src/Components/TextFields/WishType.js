@@ -5,7 +5,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { useTemplateContext } from "../../Context/templateContext";
-import CakeIcon from "@mui/icons-material/Cake";
+import CelebrationIcon from "@mui/icons-material/Celebration";
 // import { useEffect } from "react";
 const defaultOptions = [
   "Birthday",
@@ -39,17 +39,13 @@ function WishType() {
             required
             placeholder="This field must be unique"
             error={state.wishTypeError}
-            helperText={
-              state.wishTypeError
-                ? state.errorMsg
-                : "Choose or write your new unique one."
-            }
+            helperText={state.wishTypeError && state.errorMsg}
             InputProps={{
               ...params.InputProps,
               startAdornment: (
                 <>
                   <InputAdornment position="end" variant="filled">
-                    <CakeIcon color="secondary" />
+                    <CelebrationIcon color="primary" />
                   </InputAdornment>
                   {params.InputProps.startAdornment}
                 </>

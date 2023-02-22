@@ -20,7 +20,7 @@ function Title() {
           startAdornment: (
             <>
               <InputAdornment position="start">
-                <TitleIcon color="secondary" />
+                <TitleIcon color="primary" />
               </InputAdornment>
             </>
           ),
@@ -37,9 +37,7 @@ function Title() {
         }
       />
 
-      <FormHelperText>
-        {state.titleError ? state.errorMsg : "Appears as heading in email."}
-      </FormHelperText>
+      <FormHelperText>{state.titleError && state.errorMsg}</FormHelperText>
     </FormControl>
   );
 }

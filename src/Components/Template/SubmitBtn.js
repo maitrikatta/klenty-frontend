@@ -9,14 +9,17 @@ function validateData(state) {
   const details = state.details.trim();
   if (title === "" || title === null) {
     return { titleError: true, errorMsg: "Found empty title" };
-  }
-  if (wishType === "" || wishType === null) {
+  } else if (title.length < 3) {
+    return { titleError: true, errorMsg: "length must be 3 or more" };
+  } else if (wishType === "" || wishType === null) {
     return { wishTypeError: true, errorMsg: "Found empty wish type" };
-  }
-  if (details === "" || details === null) {
+  } else if (wishType.length < 3) {
+    return { wishTypeError: true, errorMsg: "Flength must be 3 or more" };
+  } else if (details === "" || details === null) {
     return { detailsError: true, errorMsg: "Found empty details" };
+  } else {
+    return 1;
   }
-  return 1;
 }
 function SubmitBtn() {
   const { state, setState } = useTemplateContext();
@@ -36,21 +39,23 @@ function SubmitBtn() {
     // show spinner in button and disable untill res/err returns
     setState({ ...state, isLoading: true });
     try {
-      const res = await authAxios.post("/wish/template", {
+      var {
+        data: { data },
+      } = await authAxios.post("/wish/template", {
         title: state.title,
         wishType: state.wishType,
         detail: state.details,
       });
-      if (res) {
+      console.log(data);
+      if (data) {
         // cancle loadin
-        console.log(res);
         setState({ ...state, isLoading: false });
         // set state to default
         clearForm();
       }
     } catch (error) {
-      alert("Some error occured!");
-      console.log(error.name);
+      setState({ ...state, isLoading: false });
+      alert(error.response.data.msg);
     }
   };
   const handleSubmit = (ev) => {

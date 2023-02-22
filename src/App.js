@@ -8,7 +8,7 @@ const theme = createTheme({
     mode: "dark",
     secondary: amber,
     background: {
-      default: "#0f1720",
+      // default: "#0A2647",
       paper: "#0B0B16",
     },
   },

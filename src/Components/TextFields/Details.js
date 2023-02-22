@@ -19,9 +19,7 @@ export default function Details() {
         multiline
         placeholder="Appears as body in email"
       ></TextField>
-      <FormHelperText>
-        {state.detailsError ? state.errorMsg : "Express yourself in details."}.
-      </FormHelperText>
+      <FormHelperText>{state.detailsError && state.errorMsg}</FormHelperText>
     </FormControl>
   );
 }
