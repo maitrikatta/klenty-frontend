@@ -1,13 +1,16 @@
-import Calendar from "./Calendar/Calendar";
+import Calendar from "./Calendar";
 import Template from "./Template/Template";
 import Events from "./Events/Events";
 import { Grid } from "@mui/material";
+import EventProvider from "../Context/EventsContext";
 function Wrapper() {
   return (
     <Grid container spacing={2}>
       <Template />
-      <Calendar />
-      <Events />
+      <EventProvider>
+        <Calendar />
+        <Events />
+      </EventProvider>
     </Grid>
   );
 }

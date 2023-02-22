@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -26,6 +27,7 @@ const OverflowBox = styled(Box)({
 });
 function TemplateList() {
   const [list, setList] = useState([]);
+  const [expand, setExpand] = React.useState(true);
   async function fetchList() {
     const { data } = await authAxios.get("/wish/template");
     setList(data.templates);
@@ -34,7 +36,12 @@ function TemplateList() {
     fetchList();
   }, []);
   return (
-    <Accordion sx={{ height: "100%" }} elevation={12}>
+    <Accordion
+      sx={{ height: "100%" }}
+      expanded={expand}
+      onChange={() => setExpand(!expand)}
+      elevation={12}
+    >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography color="primary">Template List</Typography>
       </AccordionSummary>

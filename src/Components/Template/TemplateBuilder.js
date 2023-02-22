@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Typography,
   Grid,
@@ -12,8 +13,14 @@ import SubmitBtn from "./SubmitBtn";
 import TemplateProvider from "../../Context/templateContext";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function TemplateBuilder() {
+  const [expand, setExpand] = React.useState(true);
   return (
-    <Accordion sx={{ height: "100%" }} elevation={12}>
+    <Accordion
+      expanded={expand}
+      sx={{ height: "100%" }}
+      onChange={() => setExpand(!expand)}
+      elevation={12}
+    >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography color="primary">Create Template</Typography>
       </AccordionSummary>

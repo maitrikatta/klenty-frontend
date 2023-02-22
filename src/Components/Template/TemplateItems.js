@@ -10,7 +10,6 @@ import {
   IconButton,
 } from "@mui/material";
 function TemplateItems({ list, setList }) {
-  console.log(list);
   return (
     <>
       {list.map((template) => {
