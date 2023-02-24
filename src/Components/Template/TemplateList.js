@@ -58,7 +58,13 @@ function TemplateList() {
           }}
         >
           {list.length === 0 ? (
-            <Typography align="center">
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.text.secondary,
+              }}
+              variant="subtitle1"
+              textAlign="center"
+            >
               Seems No Template Created Yet
             </Typography>
           ) : (

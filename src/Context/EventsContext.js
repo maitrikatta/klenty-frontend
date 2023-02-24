@@ -4,11 +4,15 @@
 */
 import { createContext, useState, useContext } from "react";
 import moment from "moment";
+const defaultEventState = {
+  slidedDate: moment(),
+  selectedDate: moment(),
+};
 const EventContext = createContext();
 export default function EventProvider({ children }) {
-  const [slidedDate, setSlidedDate] = useState(moment());
+  const [calendarState, setCalendarState] = useState(defaultEventState);
   return (
-    <EventContext.Provider value={{ slidedDate, setSlidedDate }}>
+    <EventContext.Provider value={{ calendarState, setCalendarState }}>
       {children}
     </EventContext.Provider>
   );

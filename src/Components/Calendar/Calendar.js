@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
@@ -11,10 +10,24 @@ import {
   Typography,
 } from "@mui/material";
 import { useEventContext } from "../../Context/EventsContext";
+
+import { styled } from "@mui/material/styles";
+
+const MyCalendarPicker = styled(CalendarPicker)(({ theme }) => ({
+  "&.MuiCalendarPicker-root": {
+    background: theme.palette.background.paper,
+  },
+  "& .MuiPickersArrowSwitcher-button": {
+    color: theme.palette.secondary.main,
+  },
+}));
 function Calendar() {
-  const { slidedDate, setSlidedDate } = useEventContext();
+  const { calendarState, setCalendarState } = useEventContext();
   const [expand, setExpand] = React.useState(true);
-  function handleDateChange(date) {}
+  function handleDateChange(date) {
+    setCalendarState({ ...calendarState, slidedDate: date });
+  }
+
   return (
     <Accordion
       expanded={expand}
@@ -25,16 +38,20 @@ function Calendar() {
         <Typography color="primary">Events of Month</Typography>
       </AccordionSummary>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <CalendarPicker
-          orientation="landscape"
-          disablePast
-          openTo="day"
-          value={slidedDate}
-          onChange={(newValue) => {
-            setSlidedDate(newValue);
+        <MyCalendarPicker
+          sx={{
+            mb: 2,
+            boxShadow: 2,
+            borderRadius: 2,
+            minWidth: 345,
           }}
-          onMonthChange={(value) => {
-            handleDateChange(value._d);
+          disablePast
+          value={calendarState.selectedDate}
+          onChange={(newValue) => {
+            setCalendarState({ ...calendarState, selectedDate: newValue });
+          }}
+          onMonthChange={(dateObj) => {
+            handleDateChange(dateObj);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
