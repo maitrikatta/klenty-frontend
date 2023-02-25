@@ -6,32 +6,35 @@ import {
 } from "@mui/material";
 import { useTemplateContext } from "../../Context/templateContext";
 import CelebrationIcon from "@mui/icons-material/Celebration";
+import useFetchTemplates from "../../customHooks/fetchTemplates";
 // import { useEffect } from "react";
-const defaultOptions = [
-  "Birthday",
-  "Marriage Anniversary",
-  "Death Anniversary",
-  "Meeting",
-  "Success Greetings",
-  "Event",
-  "Other",
+const options = [
+  "BIRTHDAY",
+  "MARRIAGE ANNIVERSARY",
+  "DEATH ANNIVERSARY",
+  "MEETING",
+  "SUCCESS GREETINGS",
+  "EVENT",
+  "OTHER",
 ];
 function WishType() {
   const { state, setState } = useTemplateContext();
-  // useEffect(() => {
-  //   console.log(state);
-  // }, [state]);
+  const data = useFetchTemplates();
+  if (data) {
+    var selected = data.map((item) => item.wishType);
+  }
   return (
     <FormControl fullWidth>
       <Autocomplete
         freeSolo
         required
+        options={options}
+        getOptionDisabled={(option) => selected.includes(option)}
         value={state.wishType}
         // onChange={(ev, value) => console.log(value)}
         onInputChange={(ev, value) =>
           setState({ ...state, wishType: value, wishTypeError: false })
         }
-        options={defaultOptions}
         renderInput={(params) => (
           <TextField
             {...params}
