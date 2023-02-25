@@ -8,11 +8,29 @@ const defaultEventState = {
   slidedDate: moment(),
   selectedDate: moment(),
 };
+const defaultEventBuilder = {
+  templateId: "",
+  eventTime: null,
+  email: "",
+  isLoading: false,
+};
 const EventContext = createContext();
 export default function EventProvider({ children }) {
   const [calendarState, setCalendarState] = useState(defaultEventState);
+  const [eventList, setEventList] = useState([]);
+  const [eventBuilderState, setEventBuilderState] =
+    useState(defaultEventBuilder);
   return (
-    <EventContext.Provider value={{ calendarState, setCalendarState }}>
+    <EventContext.Provider
+      value={{
+        calendarState,
+        setEventList,
+        setCalendarState,
+        eventList,
+        eventBuilderState,
+        setEventBuilderState,
+      }}
+    >
       {children}
     </EventContext.Provider>
   );

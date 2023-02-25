@@ -1,8 +1,25 @@
 import { useEffect } from "react";
+import authAxios from "../Libs/authAxios";
+import { useEventContext } from "../Context/EventsContext";
 function useFetchEvents() {
+  const {
+    calendarState: { slidedDate },
+    setEventList,
+  } = useEventContext();
+
   useEffect(() => {
-    console.log("custom hook ran");
-  }, []);
+    async function fetchEvents() {
+      try {
+        const {
+          data: { data },
+        } = await authAxios.get(`/events/upcoming/${slidedDate.toISOString()}`);
+        setEventList((oldState) => data);
+      } catch (error) {
+        console.log(error.response.data.msg);
+      }
+    }
+    fetchEvents();
+  }, [slidedDate]);
 }
 
 export default useFetchEvents;

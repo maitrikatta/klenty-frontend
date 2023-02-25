@@ -1,16 +1,27 @@
-import { Paper } from "@mui/material";
-
+import { ExpandMore } from "@mui/icons-material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import EventForm from "./EventForm";
 function EventBuilder() {
+  const [expand, setExpand] = useState(true);
   return (
-    <Paper
-      sx={{
-        height: "100px",
-      }}
-      square={true}
+    <Accordion
+      expanded={expand}
+      onChange={() => setExpand(!expand)}
       elevation={8}
     >
-      EventBuilder
-    </Paper>
+      <AccordionSummary expandIcon={<ExpandMore />}>
+        <Typography color="primary">Create Event</Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ textAlign: "center" }}>
+        <EventForm />
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

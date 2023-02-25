@@ -1,4 +1,3 @@
-import authAxios from "../../Libs/authAxios";
 import useFetchEvents from "../../customHooks/fetchEvents";
 import RenderEventList from "./RenderEventList";
 import { ExpandMore, InfoOutlined } from "@mui/icons-material";
@@ -13,7 +12,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEventContext } from "../../Context/EventsContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const OverflowBox = styled(Box)({
   "&.MuiBox-root ": {
@@ -31,25 +30,14 @@ const OverflowBox = styled(Box)({
 });
 
 function EventDisplay() {
-  const [eventList, setEventList] = useState([]);
-  const [expand, setExpand] = useState(true);
   const {
+    eventList,
     calendarState: { slidedDate },
   } = useEventContext();
+  const [expand, setExpand] = useState(true);
+
   useFetchEvents();
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        const {
-          data: { data },
-        } = await authAxios.get(`/events/upcoming/${slidedDate.toISOString()}`);
-        setEventList((oldState) => data);
-      } catch (error) {
-        console.log(error.response.data.msg);
-      }
-    }
-    fetchEvents();
-  }, [slidedDate]);
+
   return (
     <Accordion
       expanded={expand}
@@ -69,7 +57,7 @@ function EventDisplay() {
               maxHeight: 500,
               overflow: "auto",
               scrollbarWidth: "thin",
-              mt: 1,
+              mt: 3,
               borderRadius: 2,
               bgcolor: "background.paper",
             }}
@@ -80,15 +68,7 @@ function EventDisplay() {
             {eventList.length > 0 ? (
               <RenderEventList eventList={eventList} />
             ) : (
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.text.secondary,
-                }}
-                variant="subtitle1"
-                textAlign="center"
-              >
-                No events found
-              </Typography>
+              <EmptyList />
             )}
           </List>
         </OverflowBox>
@@ -96,7 +76,19 @@ function EventDisplay() {
     </Accordion>
   );
 }
-
+function EmptyList() {
+  return (
+    <Typography
+      sx={{
+        color: (theme) => theme.palette.text.secondary,
+      }}
+      variant="subtitle1"
+      textAlign="center"
+    >
+      No events found
+    </Typography>
+  );
+}
 function HelpText() {
   return (
     <Box
