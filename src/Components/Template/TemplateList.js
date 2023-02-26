@@ -6,11 +6,11 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TemplateItems from "./TemplateItems";
 import { styled } from "@mui/material/styles";
 import useFetchTemplates from "../../customHooks/fetchTemplates";
+import { useTemplateContext } from "../../Context/templateContext";
 
 const OverflowBox = styled(Box)({
   "&.MuiBox-root ": {
@@ -27,11 +27,11 @@ const OverflowBox = styled(Box)({
   },
 });
 function TemplateList() {
-  const [list, setList] = useState([]);
+  const { templateList, setTemplateList } = useTemplateContext();
   const [expand, setExpand] = React.useState(true);
   const data = useFetchTemplates();
   useEffect(() => {
-    setList(data);
+    setTemplateList(data);
   }, [data]);
   return (
     <Accordion
@@ -55,7 +55,7 @@ function TemplateList() {
             pb: 3,
           }}
         >
-          {list.length === 0 ? (
+          {templateList.length === 0 ? (
             <Typography
               sx={{
                 color: (theme) => theme.palette.text.secondary,
@@ -66,7 +66,7 @@ function TemplateList() {
               Seems No Template Created Yet
             </Typography>
           ) : (
-            <TemplateItems list={list} setList={setList} />
+            <TemplateItems list={templateList} setList={setTemplateList} />
           )}
         </OverflowBox>
       </AccordionDetails>

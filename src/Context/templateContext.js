@@ -12,8 +12,11 @@ const defaultState = {
 };
 export default function TemplateProvider({ children }) {
   const [state, setState] = useState(defaultState);
+  const [templateList, setTemplateList] = useState([]);
   return (
-    <TemplateContext.Provider value={{ state, setState }}>
+    <TemplateContext.Provider
+      value={{ templateList, setTemplateList, state, setState }}
+    >
       {children}
     </TemplateContext.Provider>
   );

@@ -10,7 +10,6 @@ import Title from "../TextFields/Title";
 import Details from "../TextFields/Details";
 import WishType from "../TextFields/WishType";
 import SubmitBtn from "./SubmitBtn";
-import TemplateProvider from "../../Context/templateContext";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function TemplateBuilder() {
   const [expand, setExpand] = React.useState(true);
@@ -25,24 +24,22 @@ function TemplateBuilder() {
         <Typography color="primary">Create Template</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <TemplateProvider>
-          <form>
-            <Grid alignItems="start" container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <Title />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <WishType />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Details />
-              </Grid>
-              <Grid alignSelf="end" item xs={12} md={6}>
-                <SubmitBtn />
-              </Grid>
+        <form>
+          <Grid alignItems="start" container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Title />
             </Grid>
-          </form>
-        </TemplateProvider>
+            <Grid item xs={12} md={6}>
+              <WishType />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Details />
+            </Grid>
+            <Grid alignSelf="end" item xs={12} md={6}>
+              <SubmitBtn />
+            </Grid>
+          </Grid>
+        </form>
       </AccordionDetails>
     </Accordion>
   );

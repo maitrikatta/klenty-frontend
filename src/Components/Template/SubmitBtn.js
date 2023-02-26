@@ -21,19 +21,20 @@ function validateData(state) {
     return 1;
   }
 }
+const defaultState = {
+  title: "",
+  details: "",
+  wishType: "",
+  titleError: false,
+  wishTypeError: false,
+  detailsError: false,
+  errorMsg: "",
+  isLoading: false,
+};
 function SubmitBtn() {
-  const { state, setState } = useTemplateContext();
+  const { state, setState, setTemplateList } = useTemplateContext();
   const clearForm = () => {
-    setState({
-      title: "",
-      details: "",
-      wishType: "",
-      titleError: false,
-      wishTypeError: false,
-      detailsError: false,
-      errorMsg: "",
-      isLoading: false,
-    });
+    setState(defaultState);
   };
   const sendData = async () => {
     // show spinner in button and disable untill res/err returns
@@ -46,10 +47,14 @@ function SubmitBtn() {
         wishType: state.wishType,
         detail: state.details,
       });
-      console.log(data);
+
       if (data) {
-        // cancle loadin
+        // cancle loading
         setState({ ...state, isLoading: false });
+
+        // update template list to reflex ui changes
+        setTemplateList((prevList) => [...prevList, data]);
+
         // set state to default
         clearForm();
       }
