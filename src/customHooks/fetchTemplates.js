@@ -1,3 +1,10 @@
+/*
+  Consumer components:
+    TextFields > WishType.js
+    TextFields > EventBuilder > Template.js
+    Template > TemplateList.js
+
+*/
 import { useEffect, useState } from "react";
 import authAxios from "../Libs/authAxios";
 function useFetchTemplates() {
@@ -10,6 +17,7 @@ function useFetchTemplates() {
       if (templates.length > 0) setState(templates);
       else setState(null);
     }
+    console.count("fetch");
     makeRequest();
   }, []);
   return state;

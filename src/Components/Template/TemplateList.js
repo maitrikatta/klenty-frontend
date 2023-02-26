@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -6,11 +6,12 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TemplateItems from "./TemplateItems";
-import authAxios from "../../Libs/authAxios";
 import { styled } from "@mui/material/styles";
+import useFetchTemplates from "../../customHooks/fetchTemplates";
+
 const OverflowBox = styled(Box)({
   "&.MuiBox-root ": {
     "&::-webkit-scrollbar": {
@@ -28,13 +29,10 @@ const OverflowBox = styled(Box)({
 function TemplateList() {
   const [list, setList] = useState([]);
   const [expand, setExpand] = React.useState(true);
-  async function fetchList() {
-    const { data } = await authAxios.get("/wish/template");
-    setList(data.templates);
-  }
+  const data = useFetchTemplates();
   useEffect(() => {
-    fetchList();
-  }, []);
+    setList(data);
+  }, [data]);
   return (
     <Accordion
       sx={{ height: "100%" }}
