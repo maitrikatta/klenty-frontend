@@ -9,6 +9,7 @@ import {
   StepLabel,
   StepContent,
   Button,
+  Link,
   Box,
 } from "@mui/material";
 import { useState } from "react";
@@ -80,8 +81,17 @@ function About() {
             <StepLabel>About</StepLabel>
             <StepContent>
               <Typography variant="subtitle2">
-                Your feedback matters. See the code on github.
-                <br></br> Also you can hire me!
+                Your feedback matters.
+              </Typography>
+              <Typography variant="caption">
+                <Link
+                  underline="hover"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://github.com/maitrikatta/klenty-frontend"
+                >
+                  See the code on github.
+                </Link>
               </Typography>
               <Box sx={{ mb: 1 }}>
                 <Button
