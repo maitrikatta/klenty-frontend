@@ -6,7 +6,7 @@ import EventProvider from "../Context/EventsContext";
 import TemplateProvider from "../Context/templateContext";
 function Wrapper() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       <TemplateProvider>
         <Template />
       </TemplateProvider>

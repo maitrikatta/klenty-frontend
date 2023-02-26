@@ -4,7 +4,7 @@ import EventDisplay from "./EventDisplay";
 
 function Events() {
   return (
-    <Grid item spacing={2} container>
+    <Grid item spacing={1} container>
       <Grid item xs={12} md={6}>
         <EventDisplay />
       </Grid>

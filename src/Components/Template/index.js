@@ -3,11 +3,11 @@ import TemplateBuilder from "./TemplateBuilder";
 import TemplateList from "./TemplateList";
 function Template() {
   return (
-    <Grid item direction="row" alignItems="stretch" spacing={2} container>
-      <Grid item sx={{ height: "auto" }} xs={12} sm={6}>
+    <Grid item direction="row" spacing={1} container>
+      <Grid item xs={12} sm={6}>
         <TemplateBuilder />
       </Grid>
-      <Grid item sx={{ height: "auto" }} xs={12} sm={6}>
+      <Grid item xs={12} sm={6}>
         <TemplateList />
       </Grid>
     </Grid>

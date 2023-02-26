@@ -32,6 +32,7 @@ function Calendar() {
     <Accordion
       expanded={expand}
       elevation={8}
+      sx={{ height: "100%" }}
       onChange={() => setExpand(!expand)}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
