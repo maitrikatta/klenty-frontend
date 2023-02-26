@@ -1,5 +1,5 @@
 import Calendar from "./Calendar";
-import Template from "./Template/Template";
+import Template from "./Template";
 import Events from "./Events/";
 import { Grid } from "@mui/material";
 import EventProvider from "../Context/EventsContext";
