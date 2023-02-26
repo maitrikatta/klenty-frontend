@@ -1,6 +1,7 @@
 import { Box, Tooltip, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Email as EmailIcon, Delete } from "@mui/icons-material";
+import authAxios from "../../Libs/authAxios";
 const MyIconButton = styled(IconButton)({
   color: "primary.white",
   border: "1px solid gray",
@@ -13,7 +14,10 @@ const MyIconButton = styled(IconButton)({
     backgroundColor: "rgba(230, 230, 230,0.1)",
   },
 });
-function EventActions() {
+function EventActions({ eventId }) {
+  async function sendEmail() {
+    const res = await authAxios.post("/events/send", { eventId: eventId });
+  }
   return (
     <Box
       component="span"
@@ -23,7 +27,7 @@ function EventActions() {
       }}
     >
       <Tooltip title="Send Email">
-        <MyIconButton variant="outlined">
+        <MyIconButton onClick={sendEmail} variant="outlined">
           <EmailIcon />
         </MyIconButton>
       </Tooltip>

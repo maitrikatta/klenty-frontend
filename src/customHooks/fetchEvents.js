@@ -4,6 +4,7 @@ import { useEventContext } from "../Context/EventsContext";
 function useFetchEvents() {
   const {
     calendarState: { slidedDate },
+    updateList,
     setEventList,
   } = useEventContext();
 
@@ -19,7 +20,7 @@ function useFetchEvents() {
       }
     }
     fetchEvents();
-  }, [slidedDate]);
+  }, [slidedDate, updateList]);
 }
 
 export default useFetchEvents;

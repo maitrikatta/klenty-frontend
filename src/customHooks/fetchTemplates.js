@@ -17,7 +17,6 @@ function useFetchTemplates() {
       if (templates.length > 0) setState(templates);
       else setState(null);
     }
-    console.count("fetch");
     makeRequest();
   }, []);
   return state;

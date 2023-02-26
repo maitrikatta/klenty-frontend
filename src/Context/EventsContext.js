@@ -17,6 +17,7 @@ const defaultEventBuilder = {
 const EventContext = createContext();
 export default function EventProvider({ children }) {
   const [calendarState, setCalendarState] = useState(defaultEventState);
+  const [updateList, setUpdateList] = useState(0);
   const [eventList, setEventList] = useState([]);
   const [eventBuilderState, setEventBuilderState] =
     useState(defaultEventBuilder);
@@ -25,6 +26,8 @@ export default function EventProvider({ children }) {
       value={{
         calendarState,
         setEventList,
+        updateList,
+        setUpdateList,
         setCalendarState,
         eventList,
         eventBuilderState,

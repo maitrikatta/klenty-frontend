@@ -22,7 +22,7 @@ function RenderEventList({ eventList }) {
         return (
           <Box key={_id} component="span">
             <Divider variant="inset" sx={{ mr: 2 }} component="li" />
-            <ListItem secondaryAction={<EventActions />}>
+            <ListItem secondaryAction={<EventActions eventId={_id} />}>
               <ListItemAvatar>
                 <Avatar>{wishType[0].toUpperCase()}</Avatar>
               </ListItemAvatar>

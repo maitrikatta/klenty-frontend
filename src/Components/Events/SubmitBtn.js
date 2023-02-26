@@ -22,8 +22,11 @@ const defaultEventBuilder = {
   isLoading: false,
 };
 function SubmitBtn() {
-  const { eventBuilderState: state, setEventBuilderState: setState } =
-    useEventContext();
+  const {
+    setUpdateList,
+    eventBuilderState: state,
+    setEventBuilderState: setState,
+  } = useEventContext();
   const handleSubmit = async (ev) => {
     const res = validateData(state);
     if (res !== 1) {
@@ -34,7 +37,10 @@ function SubmitBtn() {
     setState({ ...state, isLoading: true });
     try {
       var { data } = await authAxios.post("/events/upcoming", state);
-      if (data.data) alert("Event Created");
+      if (data.data) {
+        setUpdateList((prev) => prev + 1);
+        alert("Event Created");
+      }
     } catch (err) {
       setState(defaultEventBuilder);
       alert(err.response.data.msg);
