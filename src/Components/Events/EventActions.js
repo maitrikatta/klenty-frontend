@@ -1,7 +1,18 @@
+/*
+  author:Yogesh kakde
+  Note: contains email delete and send fetures.
+  Date: 6-02-2023
+*/
 import { Box, Tooltip, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Email as EmailIcon, Delete } from "@mui/icons-material";
+import {
+  Email as EmailIcon,
+  Delete,
+  DoneAll as Done,
+} from "@mui/icons-material";
 import authAxios from "../../Libs/authAxios";
+import { useEventContext } from "../../Context/EventsContext";
+import { useState } from "react";
 const MyIconButton = styled(IconButton)({
   color: "primary.white",
   border: "1px solid gray",
@@ -14,9 +25,20 @@ const MyIconButton = styled(IconButton)({
     backgroundColor: "rgba(230, 230, 230,0.1)",
   },
 });
+
 function EventActions({ eventId }) {
+  const { setUpdateList } = useEventContext();
+  const [send, setSend] = useState(false);
   async function sendEmail() {
-    const res = await authAxios.post("/events/send", { eventId: eventId });
+    const { data } = await authAxios.post("/events/send", { eventId: eventId });
+    console.log(data);
+    setSend(true);
+  }
+  async function handleDelete() {
+    const { data } = await authAxios.delete(`/events/upcoming/${eventId}`);
+    if (!data.deletedCount === 1) alert("cant delete");
+    setUpdateList((prev) => prev + 1);
+    alert("Event Deleted");
   }
   return (
     <Box
@@ -27,12 +49,12 @@ function EventActions({ eventId }) {
       }}
     >
       <Tooltip title="Send Email">
-        <MyIconButton onClick={sendEmail} variant="outlined">
-          <EmailIcon />
+        <MyIconButton disabled={send} onClick={sendEmail} variant="outlined">
+          {send ? <Done color="success" /> : <EmailIcon />}
         </MyIconButton>
       </Tooltip>
       <Tooltip title="Delete Event">
-        <MyIconButton variant="contained">
+        <MyIconButton onClick={handleDelete} variant="contained">
           <Delete />
         </MyIconButton>
       </Tooltip>
