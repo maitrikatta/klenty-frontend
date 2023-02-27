@@ -55,7 +55,7 @@ function TemplateList() {
             pb: 3,
           }}
         >
-          {templateList.length === 0 ? (
+          {templateList?.length === 0 ? (
             <Typography
               sx={{
                 color: (theme) => theme.palette.text.secondary,

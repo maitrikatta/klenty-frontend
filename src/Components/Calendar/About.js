@@ -47,7 +47,7 @@ function About() {
       </AccordionSummary>
       <AccordionDetails>
         <Stepper activeStep={currentStep} orientation="vertical">
-          {steps.map((item, index) => {
+          {steps?.map((item, index) => {
             return (
               <Step key={index}>
                 <StepLabel>{item.title}</StepLabel>

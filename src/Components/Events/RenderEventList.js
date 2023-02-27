@@ -12,7 +12,7 @@ import DateAndEmail from "./DateAndEmail";
 function RenderEventList({ eventList }) {
   return (
     <>
-      {eventList.map((eventItem) => {
+      {eventList?.map((eventItem) => {
         const {
           _id,
           eventTime,

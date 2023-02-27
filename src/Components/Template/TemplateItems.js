@@ -14,7 +14,7 @@ import {
 function TemplateItems({ list, setList }) {
   return (
     <>
-      {list.map((template) => {
+      {list?.map((template) => {
         return (
           <MyCard
             setList={setList}
