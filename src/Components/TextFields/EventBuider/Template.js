@@ -5,7 +5,7 @@ function Template() {
   const { eventBuilderState: state, setEventBuilderState: setState } =
     useEventContext();
 
-  // returns array if elements otherwise null
+  // returns array may be empty
   var data = useFetchTemplates();
   return (
     <FormControl fullWidth>
@@ -19,7 +19,7 @@ function Template() {
         label="Select Template"
         required
       >
-        {data ? (
+        {data?.length > 0 ? (
           data.map((item) => {
             return (
               <MenuItem key={item._id} value={item._id}>

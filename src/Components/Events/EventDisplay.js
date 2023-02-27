@@ -65,7 +65,7 @@ function EventDisplay() {
               <ListSubheader>{slidedDate.format("MMMM")}</ListSubheader>
             }
           >
-            {eventList.length > 0 ? (
+            {eventList?.length > 0 ? (
               <RenderEventList eventList={eventList} />
             ) : (
               <EmptyList />

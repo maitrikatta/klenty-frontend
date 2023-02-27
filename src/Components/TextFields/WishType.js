@@ -20,8 +20,8 @@ const options = [
 function WishType() {
   const { state, setState } = useTemplateContext();
   const data = useFetchTemplates();
-  if (data) {
-    var selected = data.map((item) => item.wishType);
+  if (data && data?.length > 0) {
+    var selected = data.map((item) => item?.wishType);
   }
   return (
     <FormControl fullWidth>
@@ -29,7 +29,7 @@ function WishType() {
         freeSolo
         required
         options={options}
-        getOptionDisabled={(option) => selected.includes(option)}
+        getOptionDisabled={(option) => selected?.includes(option)}
         value={state.wishType}
         // onChange={(ev, value) => console.log(value)}
         onInputChange={(ev, value) =>
@@ -41,8 +41,8 @@ function WishType() {
             label="Wish Type"
             required
             placeholder="This field must be unique"
-            error={state.wishTypeError}
-            helperText={state.wishTypeError && state.errorMsg}
+            error={state?.wishTypeError}
+            helperText={state?.wishTypeError && state?.errorMsg}
             InputProps={{
               ...params.InputProps,
               startAdornment: (

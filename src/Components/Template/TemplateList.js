@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -28,10 +28,12 @@ const OverflowBox = styled(Box)({
 });
 function TemplateList() {
   const { templateList, setTemplateList } = useTemplateContext();
+  const [loading, setLoading] = useState(true);
   const [expand, setExpand] = React.useState(true);
   const data = useFetchTemplates();
   useEffect(() => {
     setTemplateList(data);
+    setLoading(false);
   }, [data]);
   return (
     <Accordion
@@ -55,16 +57,10 @@ function TemplateList() {
             pb: 3,
           }}
         >
-          {templateList?.length === 0 ? (
-            <Typography
-              sx={{
-                color: (theme) => theme.palette.text.secondary,
-              }}
-              variant="subtitle1"
-              textAlign="center"
-            >
-              Seems No Template Created Yet
-            </Typography>
+          {loading ? (
+            <LoadingMessage />
+          ) : templateList?.length === 0 ? (
+            <EmptyList />
           ) : (
             <TemplateItems list={templateList} setList={setTemplateList} />
           )}
@@ -74,4 +70,30 @@ function TemplateList() {
   );
 }
 
+function EmptyList() {
+  return (
+    <Typography
+      sx={{
+        color: (theme) => theme.palette.text.secondary,
+      }}
+      variant="subtitle1"
+      textAlign="center"
+    >
+      Seems No Template Created Yet
+    </Typography>
+  );
+}
+function LoadingMessage() {
+  return (
+    <Typography
+      sx={{
+        color: (theme) => theme.palette.text.secondary,
+      }}
+      variant="subtitle1"
+      textAlign="center"
+    >
+      Loading Template List...
+    </Typography>
+  );
+}
 export default TemplateList;

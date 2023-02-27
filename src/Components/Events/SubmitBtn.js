@@ -5,13 +5,13 @@ import { useEventContext } from "../../Context/EventsContext";
 import authAxios from "../../Libs/authAxios";
 import moment from "moment";
 function validateData(state) {
-  const isOk = moment(state.eventTime).isValid();
-  if ((state.templateId === null) | (state.templateId.trim() === ""))
+  const isOk = moment(state?.eventTime).isValid();
+  if ((state?.templateId === null) | (state?.templateId.trim() === ""))
     return "please select template";
-  else if ((state.email === null) | (state.email.trim() === ""))
+  else if ((state?.email === null) | (state?.email.trim() === ""))
     return "invalid email";
   else if (!isOk) return "Invalid Date";
-  else if (state.eventTime === null || state.eventTime === undefined)
+  else if (state?.eventTime === null || state?.eventTime === undefined)
     return "select event time";
   else return 1;
 }
@@ -37,13 +37,13 @@ function SubmitBtn() {
     setState({ ...state, isLoading: true });
     try {
       var { data } = await authAxios.post("/events/upcoming", state);
-      if (data.data) {
+      if (data?.data) {
         setUpdateList((prev) => prev + 1);
         alert("Event Created");
       }
     } catch (err) {
       setState(defaultEventBuilder);
-      alert(err.response.data.msg);
+      alert(err?.response?.data?.msg);
     }
     setState(defaultEventBuilder);
   };
@@ -58,7 +58,7 @@ function SubmitBtn() {
         variant="contained"
         loadingPosition="end"
         endIcon={<SendIcon />}
-        loading={state.isLoading}
+        loading={state?.isLoading}
       >
         <span> create event</span>
       </LoadingButton>

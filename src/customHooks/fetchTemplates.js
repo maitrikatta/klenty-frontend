@@ -15,7 +15,6 @@ function useFetchTemplates() {
         data: { templates },
       } = await authAxios.get("/wish/template");
       if (templates.length > 0) setState(templates);
-      else setState(null);
     }
     makeRequest();
   }, []);

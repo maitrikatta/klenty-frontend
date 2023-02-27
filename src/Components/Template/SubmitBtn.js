@@ -4,9 +4,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { useTemplateContext } from "../../Context/templateContext";
 import LoadingButton from "@mui/lab/LoadingButton";
 function validateData(state) {
-  const title = state.title.trim();
-  const wishType = state.wishType.trim();
-  const details = state.details.trim();
+  const title = state?.title.trim();
+  const wishType = state?.wishType.trim();
+  const details = state?.details.trim();
   if (title === "" || title === null) {
     return { titleError: true, errorMsg: "Found empty title" };
   } else if (title.length < 3) {
@@ -60,7 +60,7 @@ function SubmitBtn() {
       }
     } catch (error) {
       setState({ ...state, isLoading: false });
-      alert(error.response.data.msg);
+      alert(error?.response?.data?.msg);
     }
   };
   const handleSubmit = (ev) => {
