@@ -55,7 +55,7 @@ function TemplateList() {
             pb: 3,
           }}
         >
-          {data?.length === 0 ? (
+          {templateList?.length === 0 ? (
             <EmptyList />
           ) : (
             <TemplateItems list={templateList} setList={setTemplateList} />
