@@ -1,6 +1,6 @@
 import axios from "axios";
 const authAxios = axios.create({
-  baseURL: "https://maitrikatta.com/api/v1",
+  baseURL: "http://localhost:5555/api/v1",
 });
 authAxios.interceptors.request.use(
   (request) => {
