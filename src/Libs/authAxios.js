@@ -5,7 +5,7 @@ const authAxios = axios.create({
 authAxios.interceptors.request.use(
   (request) => {
     request.headers.Authorization =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2UzYTM1ZjdmMjM3NzBjZjg5ZGFlODEiLCJ1c2VybmFtZSI6IkJpbGwgR2F0ZXMiLCJpYXQiOjE2NzYwMzkyMTYsImV4cCI6MTY3ODYzMTIxNn0.P_1Cwm1gAnf0UIECy8G9S_L1Z2NigU5FbTmaOlGVd4Q";
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZjOTZhMTcwOTIzNjM1NGM4YjZlZjQiLCJ1c2VybmFtZSI6IllvZ2VzaCBLYWtkZSIsImlhdCI6MTY3NzQ5ODAyOSwiZXhwIjoxNjgwMDkwMDI5fQ.46CKuRr0kX9BxIhXYKJ3-S-L8vzVP02yVJubExQWVfQ";
     return request;
   },
   (error) => {
