@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -28,12 +28,10 @@ const OverflowBox = styled(Box)({
 });
 function TemplateList() {
   const { templateList, setTemplateList } = useTemplateContext();
-  const [loading, setLoading] = useState(true);
   const [expand, setExpand] = React.useState(true);
   const data = useFetchTemplates();
   useEffect(() => {
     setTemplateList(data);
-    setLoading(false);
   }, [data]);
   return (
     <Accordion
@@ -57,9 +55,7 @@ function TemplateList() {
             pb: 3,
           }}
         >
-          {loading ? (
-            <LoadingMessage />
-          ) : templateList?.length === 0 ? (
+          {templateList?.length === 0 ? (
             <EmptyList />
           ) : (
             <TemplateItems list={templateList} setList={setTemplateList} />
