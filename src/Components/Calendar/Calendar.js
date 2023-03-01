@@ -3,6 +3,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import moment from "moment";
 import {
   Accordion,
   AccordionSummary,
@@ -25,7 +26,7 @@ function Calendar() {
   const { calendarState, setCalendarState } = useEventContext();
   const [expand, setExpand] = React.useState(true);
   function handleDateChange(date) {
-    setCalendarState({ ...calendarState, slidedDate: date });
+    setCalendarState({ ...calendarState, slidedDate: date.hours(6) });
   }
 
   return (
